@@ -1,13 +1,13 @@
 -----------------------------------------------------------------------------------------
---
+--Title: SampleVideoGame
+-- Name:  Melody Berhane
+-- Course: ICS2O
+-- This program calls the splash screen of the app to load itself.
 -- main.lua
--- Created by: Your Name
--- Date: Month Day, Year
--- Description: This calls the splash screen of the app to load itself.
 -----------------------------------------------------------------------------------------
 
 -- Hiding Status Bar
--- HIDE THE STATUS BAR
+display.setStatusBar(display.HiddenStatusBar)
 
 -----------------------------------------------------------------------------------------
 

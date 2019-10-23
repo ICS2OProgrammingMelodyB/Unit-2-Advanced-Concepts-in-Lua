@@ -55,7 +55,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- set the background to be black
-    display.setDefault("background", 0, 0, 0)
+    display.setDefault("background", 168/255, 205/255, 45/255)
 
     -- Insert the beetleship image
     beetleship = display.newImageRect("Images/beetleship.png", 200, 200)
