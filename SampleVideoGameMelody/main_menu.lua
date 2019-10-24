@@ -127,11 +127,11 @@ function scene:create( event )
     instructionButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*5/8,
+            x = display.contentWidth/8,
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/Instructions Button Unpressed.png",
+            defaultFile = "Images/Instructions Button.png",
             overFile = "Images/Instructions Button Pressed.png",
 
             -- When the button is released, call the Credits transition function

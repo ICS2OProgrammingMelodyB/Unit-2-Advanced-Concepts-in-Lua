@@ -28,6 +28,7 @@ local scrollXSpeed = 8
 local scrollYSpeed = -3
 local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
 local jungleSoundsChannel
+local bkg_image
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -54,11 +55,25 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -- set the background to be black
-    display.setDefault("background", 168/255, 205/255, 45/255)
+     -----------------------------------------------------------------------------------------
+    -- BACKGROUND AND DISPLAY OBJECTS
+    -----------------------------------------------------------------------------------------
+
+    -- Insert the background image and set it to the center of the screen
+    bkg_image = display.newImageRect("Images/background.png", display.contentWidth, display.contentHeight)
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
+
+    -- Associating display objects with this scene 
+    sceneGroup:insert( bkg_image )
+
+    -- Send the background image to the back layer so all other objects can be on top
+    bkg_image:toBack()
 
     -- Insert the beetleship image
-    beetleship = display.newImageRect("Images/beetleship.png", 200, 200)
+    rocket = display.newImageRect("Images/rocket.png", 200, 200)
 
     -- set the initial x and y position of the beetleship
     beetleship.x = 100
