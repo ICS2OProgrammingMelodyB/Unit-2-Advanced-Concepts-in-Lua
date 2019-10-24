@@ -23,7 +23,7 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
  
 -- The local variables for this scene
-local beetleship
+local rocket
 local scrollXSpeed = 8
 local scrollYSpeed = -3
 local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
@@ -35,9 +35,9 @@ local bkg_image
 --------------------------------------------------------------------------------------------
 
 -- The function that moves the beetleship across the screen
-local function moveBeetleship()
-    beetleship.x = beetleship.x + scrollXSpeed
-    beetleship.y = beetleship.y + scrollYSpeed
+local function moveRocket()
+    rocket.x = rocket.x + scrollXSpeed
+    rocket.y = rocket.y + scrollYSpeed
 end
 
 -- The function that will go to the main menu 
@@ -73,14 +73,14 @@ function scene:create( event )
     bkg_image:toBack()
 
     -- Insert the beetleship image
-    rocket = display.newImageRect("Images/rocket.png", 200, 200)
+    rocket = display.newImageRect("Images/rockets.png", 200, 200)
 
     -- set the initial x and y position of the beetleship
-    beetleship.x = 100
-    beetleship.y = display.contentHeight/2
+    rocket.x = 100
+    rocket.y = display.contentHeight/2
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( beetleship )
+    sceneGroup:insert( rocket )
 
 end -- function scene:create( event )
 
@@ -108,7 +108,7 @@ function scene:show( event )
         jungleSoundsChannel = audio.play(jungleSounds )
 
         -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", moveBeetleship)
+        Runtime:addEventListener("enterFrame", moveRocket)
 
         -- Go to the main menu screen after the given time.
         timer.performWithDelay ( 3000, gotoMainMenu)          
