@@ -136,6 +136,7 @@ function scene:destroy( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+   
 
     -----------------------------------------------------------------------------------------
 
