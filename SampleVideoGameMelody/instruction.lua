@@ -1,47 +1,43 @@
 -----------------------------------------------------------------------------------------
 --
--- splash_screen.lua
--- Created by: Melody Berhane
--- Date: Oct 24, 2019
--- Description: This is the splash screen of the game. It displays the 
--- company logo that...
+-- credits_screen.lua
+-- Created by: Your Name
+-- Special thanks to Wal Wal for helping in the design of this framework.
+-- Date: Month Day, Year
+-- Description: This is the credits page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
 
--- Use Composer Library
+-----------------------------------------------------------------------------------------
+-- INITIALIZATIONS
+-----------------------------------------------------------------------------------------
+
+-- Use Composer Libraries
 local composer = require( "composer" )
-
--- Name the Scene
-sceneName = "splash_screen"
+local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
 
--- Create Scene Object
-local scene = composer.newScene( sceneName )
+-- Naming Scene
+sceneName = "instruction"
 
-----------------------------------------------------------------------------------------
+-- Creating Scene Object
+scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+
+-----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
- 
--- The local variables for this scene
-local rocket
-local scrollXSpeed = 6
-local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
-local jungleSoundsChannel
 local bkg_image
+local backButton
 
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
--- The function that moves the beetleship across the screen
-local function moveRocket()
-    rocket.x = rocket.x + scrollXSpeed
+-- Creating Transitioning Function back to main menu
+local function BackTransition( )
+    composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
 end
 
--- The function that will go to the main menu 
-local function gotoMainMenu()
-    composer.gotoScene( "main_menu" )
-end
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -53,12 +49,12 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-     -----------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------
     -- BACKGROUND AND DISPLAY OBJECTS
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImageRect("Images/background.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/Instructions Screen.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -70,19 +66,36 @@ function scene:create( event )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
 
-    -- Insert the beetleship image
-    rocket = display.newImageRect("Images/rockets.png", 200, 200)
+    -----------------------------------------------------------------------------------------
+    -- BUTTON WIDGETS
+    -----------------------------------------------------------------------------------------
 
-    -- set the initial x and y position of the beetleship
-    rocket.x = 100
-    rocket.y = display.contentHeight/2
+    -- Creating Back Button
+    backButton = widget.newButton( 
+    {
+        -- Setting Position
+        x = display.contentWidth*1/8,
+        y = display.contentHeight*15/16,
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( rocket )
+        -- Setting Dimensions
 
-end -- function scene:create( event )
+        -- Setting Visual Properties
+        defaultFile = "Images/Back Button Unpressed.png",
+        overFile = "Images/Back Button Pressed.png",
 
---------------------------------------------------------------------------------------------
+        -- Setting Functional Properties
+        onRelease = BackTransition
+
+    } )
+
+    -----------------------------------------------------------------------------------------
+
+    -- Associating Buttons with this scene
+    sceneGroup:insert( backButton )
+    
+end --function scene:create( event )
+
+-----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
@@ -96,24 +109,18 @@ function scene:show( event )
 
     -----------------------------------------------------------------------------------------
 
-    -- Called when the scene is still off screen (but is about to come on screen).
     if ( phase == "will" ) then
-       
+        -- Called when the scene is still off screen (but is about to come on screen).
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
-        -- start the splash screen music
-        jungleSoundsChannel = audio.play(jungleSounds )
-
-        -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", moveRocket)
-
-        -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 3000, gotoMainMenu)          
-        
+        -- Called when the scene is now on screen.
+        -- Insert code here to make the scene come alive.
+        -- Example: start timers, begin animation, play audio, etc.
     end
 
-end --function scene:show( event )
+end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -122,22 +129,22 @@ function scene:hide( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+
+    -----------------------------------------------------------------------------------------
+
     local phase = event.phase
 
     -----------------------------------------------------------------------------------------
 
-    -- Called when the scene is on screen (but is about to go off screen).
-    -- Insert code here to "pause" the scene.
-    -- Example: stop timers, stop animation, stop audio, etc.
-    if ( phase == "will" ) then  
+    if ( phase == "will" ) then
+        -- Called when the scene is on screen (but is about to go off screen).
+        -- Insert code here to "pause" the scene.
+        -- Example: stop timers, stop animation, stop audio, etc.
 
     -----------------------------------------------------------------------------------------
 
-    -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
-        
-        -- stop the jungle sounds channel for this screen
-        audio.stop(jungleSoundsChannel)
+        -- Called immediately after scene goes off screen.
     end
 
 end --function scene:hide( event )
@@ -149,7 +156,6 @@ function scene:destroy( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-   
 
     -----------------------------------------------------------------------------------------
 
@@ -157,7 +163,8 @@ function scene:destroy( event )
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
-end -- function scene:destroy( event )
+
+end --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
@@ -172,3 +179,5 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
+
+

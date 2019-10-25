@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 --
 -- main_menu.lua
--- Created by: Your Name
--- Date: Month Day, Year
+-- Created by: Melody Berhane
+-- Date: Oct 24, 2019
 -- Description: This is the main menu, displaying the credits, instructions & play buttons.
 -----------------------------------------------------------------------------------------
 
@@ -96,6 +96,8 @@ function scene:create( event )
             -- Set its position on the screen relative to the screen size
             x = display.contentWidth/2,
             y = display.contentHeight*7/8,
+            width = 200,
+            height = 100,
 
             -- Insert the images here
             defaultFile = "Images/Start Button Unpressed.png",
@@ -113,6 +115,8 @@ function scene:create( event )
             -- Set its position on the screen relative to the screen size
             x = display.contentWidth*7/8,
             y = display.contentHeight*7/8,
+            width = 200,
+            height = 100,
 
             -- Insert the images here
             defaultFile = "Images/Credits Button Unpressed.png",
@@ -129,6 +133,8 @@ function scene:create( event )
             -- Set its position on the screen relative to the screen size
             x = display.contentWidth/8,
             y = display.contentHeight*7/8,
+            width = 200,
+            height = 100,
 
             -- Insert the images here
             defaultFile = "Images/Instructions Button.png",
