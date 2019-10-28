@@ -49,6 +49,7 @@ local secondNumber
 local answer 
 local wrongAnswer1
 local wrongAnswer2
+local wrongAnswer3
 
 -- the text object that will hold the addition equation
 local addEquationTextObject 
@@ -57,6 +58,7 @@ local addEquationTextObject
 local answerTextObject 
 local wrongAnswer1TextObject
 local wrongAnswer2TextObject
+local wrongAnswer3TextObject
 
 -- displays the number correct that the user has
 local numberCorrectText 
@@ -91,12 +93,13 @@ local function DetermineAnswers()
     answer = firstNumber + secondNumber
     wrongAnswer1 = answer + math.random(1,4)
     wrongAnswer2 = answer + math.random(5,8)
+    wrongAnswer3 = answer - math.random(2,6)
 end
 
 -- Function that changes the answers for a new question and places them randomly in one of the positions
 local function DisplayAnswers( )
 
-    local answerPosition = math.random(1,3)
+    local answerPosition = math.random(1,4)
     answerTextObject.text = tostring( answer )
     wrongAnswer1TextObject.text = tostring( wrongAnswer1 )
     wrongAnswer2TextObject.text = tostring( wrongAnswer2 )
@@ -113,6 +116,12 @@ local function DisplayAnswers( )
         wrongAnswer1TextObject.x = display.contentWidth*.1
         wrongAnswer2TextObject.x = display.contentWidth*.3 
 
+    elseif (answerPosition == 3) then
+       
+        answerTextObject.x = display.contentWidth*.1       
+        wrongAnswer1TextObject.x = display.contentWidth*.3
+        wrongAnswer2TextObject.x = display.contentWidth*.2
+
     else
        
         answerTextObject.x = display.contentWidth*.1        
@@ -125,6 +134,11 @@ end
 -- Function that transitions to Lose Screen
 local function LoseScreenTransition( )        
     composer.gotoScene( "you_lose", {effect = "zoomInOutFade", time = 1000})
+end 
+
+-- Function that transitions to Lose Screen
+local function WinScreenTransition( )        
+    composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
 end 
 
 -- The function that displays the equation and determines the answer and the wrong answers
@@ -155,6 +169,15 @@ local function RestartScene()
     numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
 
     -- if they have 0 lives, go to the You Lose screen
+    if (numberCorrect == 3) then
+        composer.gotoScene("you_win")
+    else 
+
+        DisplayAddEquation()
+        DetermineAnswers()
+        DisplayAnswers()
+    end
+
     if (lives == 0) then
         composer.gotoScene("you_lose")
     else 
@@ -224,6 +247,26 @@ local function TouchListenerWrongAnswer2(touch)
     
         end
 end
+
+local function TouchListenerWrongAnswer3(touch)
+    -- get the user answer from the text object that was clicked on
+    local userAnswer = wrongAnswer3TextObject.text
+
+      
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+            alreadyClickedAnswer = true
+
+
+            if (answer ~= tonumber(userAnswer)) then
+                -- decrease a life
+                lives = lives - 1
+                -- call RestartScene after 1 second
+                timer.performWithDelay( 1000, RestartScene )            
+            end        
+    
+        end
+end
     
 -- Function that adds the touch listeners to each of the answer objects
 local function AddTextObjectListeners()
@@ -231,6 +274,7 @@ local function AddTextObjectListeners()
     answerTextObject:addEventListener("touch", TouchListenerAnswer)
     wrongAnswer1TextObject:addEventListener("touch", TouchListenerWrongAnswer1)
     wrongAnswer2TextObject:addEventListener("touch", TouchListenerWrongAnswer2)
+    wrongAnswer3TextObject:addEventListener("touch", TouchListenerWrongAnswer3)
 
 end
 
@@ -240,6 +284,7 @@ local function RemoveTextObjectListeners()
     answerTextObject:removeEventListener("touch", TouchListenerAnswer)
     wrongAnswer1TextObject:removeEventListener("touch", TouchListenerWrongAnswer1)
     wrongAnswer2TextObject:removeEventListener("touch", TouchListenerWrongAnswer2)
+    wrongAnswer3TextObject:removeEventListener("touch", TouchListenerWrongAnswer3)
 
 end
 
