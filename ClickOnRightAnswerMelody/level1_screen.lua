@@ -72,6 +72,9 @@ local congratulationText
 -- Displays text that says correct.
 local correct 
 
+-- Displays text that says correct.
+local incorrect 
+
 -- Displays the level text of time text
 local level1Text 
 
@@ -103,30 +106,35 @@ local function DisplayAnswers( )
     answerTextObject.text = tostring( answer )
     wrongAnswer1TextObject.text = tostring( wrongAnswer1 )
     wrongAnswer2TextObject.text = tostring( wrongAnswer2 )
+    wrongAnswer3TextObject.text = tostring( wrongAnswer3 )
 
     if (answerPosition == 1) then                
         
         answerTextObject.x = display.contentWidth*.3        
         wrongAnswer1TextObject.x = display.contentWidth*.2
         wrongAnswer2TextObject.x = display.contentWidth*.1 
+        wrongAnswer3TextObject.x = display.contentWidth*.4
 
     elseif (answerPosition == 2) then
        
         answerTextObject.x = display.contentWidth*.2        
         wrongAnswer1TextObject.x = display.contentWidth*.1
         wrongAnswer2TextObject.x = display.contentWidth*.3 
+        wrongAnswer3TextObject.x = display.contentWidth*.4
 
     elseif (answerPosition == 3) then
        
         answerTextObject.x = display.contentWidth*.1       
         wrongAnswer1TextObject.x = display.contentWidth*.3
         wrongAnswer2TextObject.x = display.contentWidth*.2
+        wrongAnswer3TextObject.x = display.contentWidth*.4 
 
     else
        
         answerTextObject.x = display.contentWidth*.1        
         wrongAnswer1TextObject.x = display.contentWidth*.2
         wrongAnswer2TextObject.x = display.contentWidth*.3
+        wrongAnswer3TextObject.x = display.contentWidth*.4
     end
 
 end
@@ -164,6 +172,7 @@ local function RestartScene()
 
     alreadyClickedAnswer = false
     correct.isVisible = false
+    incorrect.isVisible = false
 
     livesText.text = "Number of lives = " .. tostring(lives)
     numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
@@ -195,11 +204,13 @@ local function TouchListenerAnswer(touch)
 
     if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
 
-        alreadyClickedAnswer = true
+        alreadyClickedAnswer = true 
 
         -- if the user gets the answer right, display Correct and call RestartSceneRight
-        if (answer == tonumber(userAnswer)) then     
+        if (answer == tonumber(userAnswer)) then 
+            correct1Channel = audio.play( correct1 )    
             correct.isVisible = true
+            correct1Channel = audio.play( correct1 ) 
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
             -- call RestartScene after 1 second
@@ -219,6 +230,7 @@ local function TouchListenerWrongAnswer1(touch)
 
 
         if (answer ~= tonumber(userAnswer)) then
+            incorrect.isVisible = true
             -- decrease a life
             lives = lives - 1
             -- call RestartScene after 1 second
@@ -239,6 +251,7 @@ local function TouchListenerWrongAnswer2(touch)
 
 
             if (answer ~= tonumber(userAnswer)) then
+                incorrect.isVisible = true
                 -- decrease a life
                 lives = lives - 1
                 -- call RestartScene after 1 second
@@ -259,6 +272,7 @@ local function TouchListenerWrongAnswer3(touch)
 
 
             if (answer ~= tonumber(userAnswer)) then
+                incorrect.isVisible = true
                 -- decrease a life
                 lives = lives - 1
                 -- call RestartScene after 1 second
@@ -323,6 +337,7 @@ function scene:create( event )
     answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 50 )
     wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 50 )
     wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 50 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight/2, nil, 50 )
     numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 25)
 
     -- create the text object that will hold the number of lives
@@ -337,6 +352,11 @@ function scene:create( event )
     correct = display.newText("Correct", display.contentWidth/2, display.contentHeight*1/3, nil, 50 )
     correct:setTextColor(100/255, 47/255, 210/255)
     correct.isVisible = false
+
+    -- create the text object that will say Correct, set the colour and then hide it
+    incorrect = display.newText("Incorrect", display.contentWidth/2, display.contentHeight*1/3, nil, 50 )
+    incorrect:setTextColor(100/255, 47/255, 210/255)
+    incorrect.isVisible = false
 
     -- create the text object that will say Out of Time, set the colour and then hide it
     outOfTimeText = display.newText("Out of Time!", display.contentWidth*2/5, display.contentHeight*1/3, nil, 50)
@@ -355,8 +375,10 @@ function scene:create( event )
     sceneGroup:insert( answerTextObject )
     sceneGroup:insert( wrongAnswer1TextObject )
     sceneGroup:insert( wrongAnswer2TextObject )
+    sceneGroup:insert( wrongAnswer3TextObject )
     sceneGroup:insert( congratulationText )
     sceneGroup:insert( correct )
+    sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )
 end
 
@@ -370,6 +392,8 @@ function scene:show( event )
     -- Creating a group that associates objects with the scene
     --local sceneGroup = self.view
     local phase = event.phase
+    
+    
 
 
     -----------------------------------------------------------------------------------------
@@ -377,6 +401,8 @@ function scene:show( event )
     if ( phase == "will" ) then
 
         -- Called when the scene is still off screen (but is about to come on screen).
+        local correct1 = audio.loadSound("Sounds/CorrectAnswer.mp3")
+        local correct1Channel 
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then

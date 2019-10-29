@@ -75,6 +75,9 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
+        local gameOver = audio.loadSound("Sounds/Kids Booing.mp3")
+        local gameOverChannel
+        gameOverChannel = audio.play( gameOver )
 
     -----------------------------------------------------------------------------------------
 
@@ -105,6 +108,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+        gameOverChannel = audio.stop( gameOver )
 
     -----------------------------------------------------------------------------------------
 

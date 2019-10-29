@@ -18,7 +18,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_lose"
+sceneName = "you_win"
 
 -----------------------------------------------------------------------------------------
 
@@ -74,6 +74,9 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
+        local Win = audio.loadSound("Sounds/win.mp3")
+        local WinChannel
+        WinChannel = audio.play( Win )
 
     -----------------------------------------------------------------------------------------
 
@@ -104,6 +107,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+        gameOverChannel = audio.stop( win )
 
     -----------------------------------------------------------------------------------------
 
