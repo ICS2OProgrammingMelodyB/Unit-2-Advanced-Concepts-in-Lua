@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------------------
 -- you_lose.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
+-- Modified by: Melody Berhane
 -- Date: Month Day, Year
 -- Description: This shows the player that they lost the game and plays a booing sound.
 -----------------------------------------------------------------------------------------

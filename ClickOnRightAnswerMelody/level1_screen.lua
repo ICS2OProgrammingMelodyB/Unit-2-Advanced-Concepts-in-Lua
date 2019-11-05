@@ -2,7 +2,7 @@
 --
 -- level1_screen.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
+-- Modified by: Melody Berhane
 -- Date: Month Day, Year
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
@@ -173,6 +173,8 @@ local function RestartScene()
     alreadyClickedAnswer = false
     correct.isVisible = false
     incorrect.isVisible = false
+    correct1Channel = audio.stop( correct1 ) 
+    wrongSoundChannel = audio.stop( wrongSound )
 
     livesText.text = "Number of lives = " .. tostring(lives)
     numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
@@ -208,9 +210,10 @@ local function TouchListenerAnswer(touch)
 
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then 
+            local correct1 = audio.loadSound("Sounds/CorrectAnswer.mp3")
+            local correct1Channel
             correct1Channel = audio.play( correct1 )    
             correct.isVisible = true
-            correct1Channel = audio.play( correct1 ) 
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
             -- call RestartScene after 1 second
@@ -230,6 +233,9 @@ local function TouchListenerWrongAnswer1(touch)
 
 
         if (answer ~= tonumber(userAnswer)) then
+            local wrongSound = audio.loadSound("Sounds/WrongBuzzer.mp3")
+            local wrongSoundChannel
+            wrongSoundChannel = audio.play( wrongSound ) 
             incorrect.isVisible = true
             -- decrease a life
             lives = lives - 1
@@ -250,7 +256,10 @@ local function TouchListenerWrongAnswer2(touch)
             alreadyClickedAnswer = true
 
 
-            if (answer ~= tonumber(userAnswer)) then
+            if ( answer ~= tonumber(userAnswer)) then
+                local wrongSound = audio.loadSound("Sounds/WrongBuzzer.mp3")
+                local wrongSoundChannel
+                wrongSoundChannel = audio.play( wrongSound ) 
                 incorrect.isVisible = true
                 -- decrease a life
                 lives = lives - 1
@@ -272,6 +281,9 @@ local function TouchListenerWrongAnswer3(touch)
 
 
             if (answer ~= tonumber(userAnswer)) then
+                local wrongSound = audio.loadSound("Sounds/WrongBuzzer.mp3")
+                local wrongSoundChannel
+                wrongSoundChannel = audio.play( wrongSound )
                 incorrect.isVisible = true
                 -- decrease a life
                 lives = lives - 1
@@ -400,9 +412,7 @@ function scene:show( event )
 
     if ( phase == "will" ) then
 
-        -- Called when the scene is still off screen (but is about to come on screen).
-        local correct1 = audio.loadSound("Sounds/CorrectAnswer.mp3")
-        local correct1Channel 
+        -- Called when the scene is still off screen (but is about to come on screen). 
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
