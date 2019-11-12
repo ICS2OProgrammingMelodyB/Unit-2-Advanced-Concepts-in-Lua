@@ -49,7 +49,6 @@ local spikes3platform
 
 local torchesAndSign
 local door
-local door
 local character
 
 local heart1
@@ -58,13 +57,16 @@ local numLives = 2
 
 local rArrow 
 local uArrow
+local lArrow
 
 local motionx = 0
 local SPEED = 5
+local SPEED1 = -5
 local LINEAR_VELOCITY = -100
 local GRAVITY = 7
 
 local leftW 
+local rightW
 local topW
 local floor
 
@@ -82,6 +84,11 @@ local questionsAnswered = 0
 local function right (touch)
     motionx = SPEED
     character.xScale = 1
+end
+
+local function left (touch)
+    motionx = SPEED1
+    character.xScale = -1
 end
 
 -- When up arrow is touched, add vertical so it can jump
@@ -107,11 +114,13 @@ end
 local function AddArrowEventListeners()
     rArrow:addEventListener("touch", right)
     uArrow:addEventListener("touch", up)
+    lArrow:addEventListener("touch", left)
 end
 
 local function RemoveArrowEventListeners()
     rArrow:removeEventListener("touch", right)
     uArrow:removeEventListener("touch", up)
+    uArrow:removeEventListener("touch", left)
 end
 
 local function AddRuntimeListeners()
@@ -284,6 +293,7 @@ local function AddPhysicsBodies()
 
     physics.addBody(leftW, "static", {density=1, friction=0.3, bounce=0.2} )
     physics.addBody(topW, "static", {density=1, friction=0.3, bounce=0.2} )
+     physics.addBody(rightW, "static", {density=1, friction=0.3, bounce=0.2} )
     physics.addBody(floor, "static", {density=1, friction=0.3, bounce=0.2} )
 
     physics.addBody(ball1, "static",  {density=0, friction=0, bounce=0} )
@@ -308,6 +318,7 @@ local function RemovePhysicsBodies()
     physics.removeBody(spikes3platform)
 
     physics.removeBody(leftW)
+    physics.removeBody(rightW)
     physics.removeBody(topW)
     physics.removeBody(floor)
  
@@ -451,6 +462,11 @@ function scene:create( event )
     rArrow = display.newImageRect("Images/RightArrowUnpressed.png", 100, 50)
     rArrow.x = display.contentWidth * 9.2 / 10
     rArrow.y = display.contentHeight * 9.5 / 10
+
+    --Insert the left arrow
+    lArrow = display.newImageRect("Images/LeftArrowUnpressed.png", 100, 50)
+    lArrow.x = display.contentWidth * 7.2 / 10
+    lArrow.y = display.contentHeight * 9.5 / 10
    
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( rArrow)
