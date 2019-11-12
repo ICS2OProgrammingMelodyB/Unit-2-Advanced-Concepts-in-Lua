@@ -84,7 +84,7 @@ local function TouchListenerAnswer(touch)
 end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
-local function TouchListenerWrongAnswer(touch)
+local function TouchListenerWrongAnswer1(touch)
     userAnswer = wrongText1.text
     
     if (touch.phase == "ended") then
@@ -116,11 +116,15 @@ local function TouchListenerWrongAnswer3(touch)
         
     end 
 end
+<<<<<<< HEAD
+=======
+
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 --adding the event listeners 
 local function AddTextListeners ( )
     answerText:addEventListener( "touch", TouchListenerAnswer )
-    wrongText1:addEventListener( "touch", TouchListenerWrongAnswer)
+    wrongText1:addEventListener( "touch", TouchListenerWrongAnswer1)
     wrongText2:addEventListener( "touch", TouchListenerWrongAnswer2)
     wrongText3:addEventListener( "touch", TouchListenerWrongAnswer3)
 end
@@ -130,7 +134,11 @@ local function RemoveTextListeners()
     answerText:removeEventListener( "touch", TouchListenerAnswer )
     wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer)
     wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer2)
+<<<<<<< HEAD
     wrongText3:removeEventListener( "touch", TouchListenerWrongAnswer3)
+=======
+    wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer3)
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 end
 
 local function DisplayQuestion()
@@ -177,6 +185,9 @@ local function PositionAnswers()
         wrongText3.x = X2
         wrongText3.y = Y2
 
+        wrongText3.x = X2
+        wrongText3.y = Y2
+
         
     elseif (answerPosition == 2) then
 
@@ -190,7 +201,11 @@ local function PositionAnswers()
         wrongText2.y = Y1
 
         wrongText3.x = X1
+<<<<<<< HEAD
         wrongText3.y = Y1
+=======
+        wrongText3.y = Y2
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 
     elseif (answerPosition == 3) then
@@ -205,7 +220,11 @@ local function PositionAnswers()
         wrongText2.y = Y1
 
         wrongText3.x = X2
+<<<<<<< HEAD
         wrongText3.y = Y1
+=======
+        wrongText3.y = Y2
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
             
     end
 end
@@ -242,7 +261,11 @@ function scene:create( event )
     wrongText1.anchorX = 0
     wrongText2 = display.newText("", X1, Y1, Arial, 75)
     wrongText2.anchorX = 0
+<<<<<<< HEAD
     wrongText3 = display.newText("", X1, Y1, Arial, 75)
+=======
+    wrongText3 = display.newText("", X2, Y1, Arial, 75)
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
     wrongText3.anchorX = 0
 
     -----------------------------------------------------------------------------------------

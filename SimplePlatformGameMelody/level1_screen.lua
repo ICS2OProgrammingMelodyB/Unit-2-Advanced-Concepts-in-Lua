@@ -60,12 +60,20 @@ local uArrow
 local lArrow
 
 local motionx = 0
+<<<<<<< HEAD
 local SPEED = 4
 local SPEED1 = -4
 local LINEAR_VELOCITY = -80
 local GRAVITY = 6
+=======
+local SPEED = 5
+local SPEED1 = -5
+local LINEAR_VELOCITY = -100
+local GRAVITY = 7
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 local leftW 
+local rightW
 local topW
 local floor
 local rightW
@@ -97,7 +105,10 @@ local function right (touch)
     character.xScale = 1
 end
 
+<<<<<<< HEAD
 -- When right arrow is touched, move character right
+=======
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 local function left (touch)
     motionx = SPEED1
     character.xScale = -1
@@ -132,8 +143,12 @@ end
 local function RemoveArrowEventListeners()
     rArrow:removeEventListener("touch", right)
     uArrow:removeEventListener("touch", up)
+<<<<<<< HEAD
     lArrow:removeEventListener("touch", left)
 
+=======
+    uArrow:removeEventListener("touch", left)
+>>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 end
 
 local function AddRuntimeListeners()
@@ -320,6 +335,7 @@ local function AddPhysicsBodies()
     physics.addBody(leftW, "static", {density=1, friction=0.3, bounce=0.2} )
     physics.addBody(rightW, "static", {density=1, friction=0.3, bounce=0.2} )
     physics.addBody(topW, "static", {density=1, friction=0.3, bounce=0.2} )
+     physics.addBody(rightW, "static", {density=1, friction=0.3, bounce=0.2} )
     physics.addBody(floor, "static", {density=1, friction=0.3, bounce=0.2} )
 
     physics.addBody(ball1, "static",  {density=0, friction=0, bounce=0} )
@@ -489,6 +505,11 @@ function scene:create( event )
     rArrow = display.newImageRect("Images/RightArrowUnpressed.png", 100, 50)
     rArrow.x = display.contentWidth * 9.2 / 10
     rArrow.y = display.contentHeight * 9.5 / 10
+
+    --Insert the left arrow
+    lArrow = display.newImageRect("Images/LeftArrowUnpressed.png", 100, 50)
+    lArrow.x = display.contentWidth * 7.2 / 10
+    lArrow.y = display.contentHeight * 9.5 / 10
    
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( rArrow)
