@@ -116,10 +116,7 @@ local function TouchListenerWrongAnswer3(touch)
         
     end 
 end
-<<<<<<< HEAD
-=======
 
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 --adding the event listeners 
 local function AddTextListeners ( )
@@ -134,11 +131,7 @@ local function RemoveTextListeners()
     answerText:removeEventListener( "touch", TouchListenerAnswer )
     wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer)
     wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer2)
-<<<<<<< HEAD
     wrongText3:removeEventListener( "touch", TouchListenerWrongAnswer3)
-=======
-    wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer3)
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 end
 
 local function DisplayQuestion()
@@ -182,8 +175,6 @@ local function PositionAnswers()
         
         wrongText2.x = X1
         wrongText2.y = Y2
-        wrongText3.x = X2
-        wrongText3.y = Y2
 
         wrongText3.x = X2
         wrongText3.y = Y2
@@ -201,11 +192,7 @@ local function PositionAnswers()
         wrongText2.y = Y1
 
         wrongText3.x = X1
-<<<<<<< HEAD
         wrongText3.y = Y1
-=======
-        wrongText3.y = Y2
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 
     elseif (answerPosition == 3) then
@@ -219,12 +206,8 @@ local function PositionAnswers()
         wrongText2.x = X1
         wrongText2.y = Y1
 
-        wrongText3.x = X2
-<<<<<<< HEAD
         wrongText3.y = Y1
-=======
         wrongText3.y = Y2
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
             
     end
 end
@@ -261,11 +244,8 @@ function scene:create( event )
     wrongText1.anchorX = 0
     wrongText2 = display.newText("", X1, Y1, Arial, 75)
     wrongText2.anchorX = 0
-<<<<<<< HEAD
     wrongText3 = display.newText("", X1, Y1, Arial, 75)
-=======
     wrongText3 = display.newText("", X2, Y1, Arial, 75)
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
     wrongText3.anchorX = 0
 
     -----------------------------------------------------------------------------------------
