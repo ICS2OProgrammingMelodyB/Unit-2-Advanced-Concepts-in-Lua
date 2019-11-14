@@ -116,10 +116,7 @@ local function TouchListenerWrongAnswer3(touch)
         
     end 
 end
-<<<<<<< HEAD
-=======
 
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 --adding the event listeners 
 local function AddTextListeners ( )
@@ -132,13 +129,9 @@ end
 --removing the event listeners
 local function RemoveTextListeners()
     answerText:removeEventListener( "touch", TouchListenerAnswer )
-    wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer)
+    wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer1)
     wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer2)
-<<<<<<< HEAD
     wrongText3:removeEventListener( "touch", TouchListenerWrongAnswer3)
-=======
-    wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer3)
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 end
 
 local function DisplayQuestion()
@@ -170,7 +163,7 @@ end
 local function PositionAnswers()
 
     --creating random start position in a cretain area
-    answerPosition = math.random(1,3)
+    answerPosition = math.random(1,4)
 
     if (answerPosition == 1) then
 
@@ -182,13 +175,10 @@ local function PositionAnswers()
         
         wrongText2.x = X1
         wrongText2.y = Y2
-        wrongText3.x = X2
-        wrongText3.y = Y2
 
         wrongText3.x = X2
         wrongText3.y = Y2
 
-        
     elseif (answerPosition == 2) then
 
         answerText.x = X1
@@ -200,12 +190,9 @@ local function PositionAnswers()
         wrongText2.x = X2
         wrongText2.y = Y1
 
-        wrongText3.x = X1
-<<<<<<< HEAD
+        wrongText3.y = x1
         wrongText3.y = Y1
-=======
-        wrongText3.y = Y2
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
+
 
 
     elseif (answerPosition == 3) then
@@ -219,12 +206,22 @@ local function PositionAnswers()
         wrongText2.x = X1
         wrongText2.y = Y1
 
-        wrongText3.x = X2
-<<<<<<< HEAD
+        wrongText3.y = x2
         wrongText3.y = Y1
-=======
-        wrongText3.y = Y2
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
+
+    elseif (answerPosition == 4) then
+
+        answerText.x = X2
+        answerText.y = Y1
+            
+        wrongText1.x = X1
+        wrongText1.y = Y1
+            
+        wrongText2.x = X1
+        wrongText2.y = Y1
+
+        wrongText3.y = x2
+        wrongText3.y = Y1
             
     end
 end
@@ -261,11 +258,7 @@ function scene:create( event )
     wrongText1.anchorX = 0
     wrongText2 = display.newText("", X1, Y1, Arial, 75)
     wrongText2.anchorX = 0
-<<<<<<< HEAD
-    wrongText3 = display.newText("", X1, Y1, Arial, 75)
-=======
     wrongText3 = display.newText("", X2, Y1, Arial, 75)
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
     wrongText3.anchorX = 0
 
     -----------------------------------------------------------------------------------------

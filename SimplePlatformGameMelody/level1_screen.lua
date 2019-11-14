@@ -60,17 +60,10 @@ local uArrow
 local lArrow
 
 local motionx = 0
-<<<<<<< HEAD
 local SPEED = 4
 local SPEED1 = -4
 local LINEAR_VELOCITY = -80
 local GRAVITY = 6
-=======
-local SPEED = 5
-local SPEED1 = -5
-local LINEAR_VELOCITY = -100
-local GRAVITY = 7
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 
 local leftW 
 local rightW
@@ -105,10 +98,9 @@ local function right (touch)
     character.xScale = 1
 end
 
-<<<<<<< HEAD
+
 -- When right arrow is touched, move character right
-=======
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
+
 local function left (touch)
     motionx = SPEED1
     character.xScale = -1
@@ -143,12 +135,7 @@ end
 local function RemoveArrowEventListeners()
     rArrow:removeEventListener("touch", right)
     uArrow:removeEventListener("touch", up)
-<<<<<<< HEAD
     lArrow:removeEventListener("touch", left)
-
-=======
-    uArrow:removeEventListener("touch", left)
->>>>>>> b69501d3a43a067b891d2f63cc94f315e5e6c83b
 end
 
 local function AddRuntimeListeners()
@@ -215,12 +202,12 @@ local function onCollision( self, event )
 
     if ( event.phase == "began" ) then
 
-        --Pop sound
-        popSoundChannel = audio.play(popSound)
 
         if  (event.target.myName == "spikes1") or 
             (event.target.myName == "spikes2") or
             (event.target.myName == "spikes3") then
+            --Pop sound
+            popSoundChannel = audio.play(popSound)
 
 
             -- remove runtime listeners that move the character
