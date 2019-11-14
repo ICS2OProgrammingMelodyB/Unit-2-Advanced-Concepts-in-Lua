@@ -65,6 +65,7 @@ local SPEED1 = -4
 local LINEAR_VELOCITY = -80
 local GRAVITY = 6
 
+
 local leftW 
 local rightW
 local topW
@@ -100,7 +101,6 @@ end
 
 
 -- When right arrow is touched, move character right
-
 local function left (touch)
     motionx = SPEED1
     character.xScale = -1
@@ -263,6 +263,8 @@ local function onCollision( self, event )
             if (questionsAnswered == 3) then
                 -- after getting 3 questions right, go to the you win screen
                 --timer.performWithDelay(200, YouWinTransition)
+                timer.performWithDelay(200, YouWinTransition)
+                youwinSoundChannel = audio.play(youwinSound)
             end
         end        
 

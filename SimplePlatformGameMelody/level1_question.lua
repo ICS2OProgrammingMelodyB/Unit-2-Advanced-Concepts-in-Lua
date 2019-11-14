@@ -194,7 +194,6 @@ local function PositionAnswers()
         wrongText3.y = Y1
 
 
-
     elseif (answerPosition == 3) then
 
         answerText.x = X2
@@ -222,7 +221,6 @@ local function PositionAnswers()
 
         wrongText3.y = x2
         wrongText3.y = Y1
-            
     end
 end
 
