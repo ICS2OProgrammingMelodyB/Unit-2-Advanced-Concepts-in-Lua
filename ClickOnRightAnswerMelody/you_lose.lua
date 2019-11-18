@@ -75,9 +75,6 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
-        local gameOver = audio.loadSound("Sounds/Kids Booing.mp3")
-        local gameOverChannel
-        gameOverChannel = audio.play( gameOver )
 
     -----------------------------------------------------------------------------------------
 
@@ -86,6 +83,9 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        local gameOver = audio.loadSound("Sounds/Kids Booing.mp3")
+        local gameOverChannel
+        gameOverChannel = audio.play( gameOver )
     end
 
 end

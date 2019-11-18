@@ -74,9 +74,6 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
-        local Win = audio.loadSound("Sounds/win.mp3")
-        local WinChannel
-        WinChannel = audio.play( Win )
 
     -----------------------------------------------------------------------------------------
 
@@ -85,6 +82,9 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        local Win = audio.loadSound("Sounds/win.mp3")
+        local WinChannel
+        WinChannel = audio.play( Win )
     end
 
 end
@@ -107,7 +107,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        gameOverChannel = audio.stop( win )
+        WinChannel = audio.stop( win )
 
     -----------------------------------------------------------------------------------------
 
