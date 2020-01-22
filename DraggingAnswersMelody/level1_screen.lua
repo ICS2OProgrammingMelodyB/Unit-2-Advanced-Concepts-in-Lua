@@ -77,6 +77,8 @@ local correctSound = audio.loadSound("Sounds/Correct.wav")
 local correctSoundChannel
 local booSound = audio.loadSound("Sounds/boo.mp3")
 local booSoundChannel
+local backgroundMusic = audio.loadSound("Sounds/backgroundM.mp3")
+local backgroundMusicChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -572,8 +574,6 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        local backgroundMusic = audio.loadSound("Sounds/backgroundM.mp3")
-        local backgroundMusicChannel
         backgroundMusicChannel = audio.play( backgroundMusic, {loops = -1} )
         --RestartLevel1()
         AddAnswerBoxEventListeners() 

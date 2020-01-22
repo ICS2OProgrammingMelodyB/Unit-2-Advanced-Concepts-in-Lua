@@ -495,13 +495,16 @@ function scene:create( event )
     rArrow.x = display.contentWidth * 9.2 / 10
     rArrow.y = display.contentHeight * 9.5 / 10
 
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( rArrow)
+
     --Insert the left arrow
     lArrow = display.newImageRect("Images/LeftArrowUnpressed.png", 100, 50)
     lArrow.x = display.contentWidth * 7.2 / 10
     lArrow.y = display.contentHeight * 9.5 / 10
    
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( rArrow)
+    sceneGroup:insert( lArrow)
 
     --Insert the left arrow
     uArrow = display.newImageRect("Images/UpArrowUnpressed.png", 50, 100)

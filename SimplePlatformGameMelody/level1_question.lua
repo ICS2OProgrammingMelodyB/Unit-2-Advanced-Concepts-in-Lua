@@ -190,7 +190,7 @@ local function PositionAnswers()
         wrongText2.x = X2
         wrongText2.y = Y1
 
-        wrongText3.y = x1
+        wrongText3.y = X1
         wrongText3.y = Y1
 
 
@@ -205,7 +205,7 @@ local function PositionAnswers()
         wrongText2.x = X1
         wrongText2.y = Y1
 
-        wrongText3.y = x2
+        wrongText3.y = X2
         wrongText3.y = Y1
 
     elseif (answerPosition == 4) then
@@ -216,11 +216,11 @@ local function PositionAnswers()
         wrongText1.x = X1
         wrongText1.y = Y1
             
-        wrongText2.x = X1
-        wrongText2.y = Y1
+        wrongText2.x = X2
+        wrongText2.y = Y2
 
-        wrongText3.y = x2
-        wrongText3.y = Y1
+        wrongText3.y = X1
+        wrongText3.y = Y2
     end
 end
 
